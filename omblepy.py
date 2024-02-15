@@ -384,6 +384,7 @@ async def main():
     finally:
         logger.info("unpair and disconnect")
         await bleClient.unpair()
-        await bleClient.disconnect()
+        if bleClient.is_connected:
+            await bleClient.disconnect()
 
 asyncio.run(main())
